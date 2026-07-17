@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Check, Star, Clock, FileText, User, Headphones, Activity, AlertTriangle, ArrowRight, BookOpen, AlertCircle, FileSpreadsheet, RefreshCw } from 'lucide-react';
+import { Check, Star, Clock, FileText, User, Headphones, Activity, AlertTriangle, ArrowRight, BookOpen, AlertCircle, FileSpreadsheet, RefreshCw, Calendar } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import drEvelynReedImg from '../assets/dr_evelyn_reed.jpg';
