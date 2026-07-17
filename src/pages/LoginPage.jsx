@@ -33,7 +33,7 @@ export default function LoginPage() {
     // Mock authentication
     setSuccessMessage('Logged in successfully! Redirecting...');
     setTimeout(() => {
-      navigate('/patient-registration');
+      navigate('/dashboard');
     }, 1000);
   };
 

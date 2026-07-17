@@ -12,6 +12,9 @@ import ServiceAssignmentPage from './pages/ServiceAssignmentPage';
 import CareBeginsPage from './pages/CareBeginsPage';
 import ChatSupportPage from './pages/ChatSupportPage';
 import PaymentDetailsPage from './pages/PaymentDetailsPage';
+import DashboardPage from './pages/DashboardPage';
+import MyHealthPage from './pages/MyHealthPage';
+import AppointmentsPage from './pages/AppointmentsPage';
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
       <Route path="/care-begins" element={<CareBeginsPage />} />
       <Route path="/chat-support" element={<ChatSupportPage />} />
       <Route path="/payment-details" element={<PaymentDetailsPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/my-health" element={<MyHealthPage />} />
+      <Route path="/appointments" element={<AppointmentsPage />} />
     </Routes>
   );
 }

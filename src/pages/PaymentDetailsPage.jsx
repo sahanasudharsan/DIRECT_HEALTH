@@ -47,7 +47,7 @@ export default function PaymentDetailsPage() {
   const handleModalClose = () => {
     setShowSuccessModal(false);
     alert('Thank you! Your payment of $200.00 was recorded. Welcome to Direct Health!');
-    navigate('/');
+    navigate('/dashboard');
   };
 
   const handleChat = () => {
