@@ -15,6 +15,10 @@ import PaymentDetailsPage from './pages/PaymentDetailsPage';
 import DashboardPage from './pages/DashboardPage';
 import MyHealthPage from './pages/MyHealthPage';
 import AppointmentsPage from './pages/AppointmentsPage';
+import MedicalRecordsPage from './pages/MedicalRecordsPage';
+import PrescriptionsPage from './pages/PrescriptionsPage';
+import ProfilePage from './pages/ProfilePage';
+import NotificationsPage from './pages/NotificationsPage';
 
 function App() {
   return (
@@ -34,6 +38,10 @@ function App() {
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/my-health" element={<MyHealthPage />} />
       <Route path="/appointments" element={<AppointmentsPage />} />
+      <Route path="/records" element={<MedicalRecordsPage />} />
+      <Route path="/prescriptions" element={<PrescriptionsPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/notifications" element={<NotificationsPage />} />
     </Routes>
   );
 }

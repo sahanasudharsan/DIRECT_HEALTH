@@ -1,19 +1,12 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Bell } from 'lucide-react';
 import Logo from './Logo';
 
 export default function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const currentPath = location.pathname;
-
-  const handleNotificationClick = () => {
-    alert('You have 3 new notifications! (Upcoming session tomorrow, new treatment note, and exercise plan update.)');
-  };
-
-  const handleProfileClick = () => {
-    alert('User profile settings for Sarah J. Miller (Patient ID: 80396111) are currently set to default.');
-  };
 
   return (
     <header className="main-header">
@@ -42,20 +35,18 @@ export default function Header() {
           >
             Appointments
           </Link>
-          <a 
-            href="#records" 
-            className="nav-tab"
-            onClick={(e) => { e.preventDefault(); alert('Medical Records logs page is coming soon!'); }}
+          <Link 
+            to="/records" 
+            className={`nav-tab ${currentPath === '/records' ? 'active' : ''}`}
           >
             Records
-          </a>
-          <a 
-            href="#prescriptions" 
-            className="nav-tab"
-            onClick={(e) => { e.preventDefault(); alert('Prescriptions scans page is coming soon!'); }}
+          </Link>
+          <Link 
+            to="/prescriptions" 
+            className={`nav-tab ${currentPath === '/prescriptions' ? 'active' : ''}`}
           >
             Prescriptions
-          </a>
+          </Link>
         </nav>
       </div>
 
@@ -66,17 +57,17 @@ export default function Header() {
         <button 
           type="button" 
           className="notification-bell-btn"
-          onClick={handleNotificationClick}
+          onClick={() => navigate('/notifications')}
           aria-label="Notifications"
         >
           <Bell size={20} />
-          <span className="notification-dot"></span>
+          {currentPath !== '/notifications' && <span className="notification-dot"></span>}
         </button>
 
         {/* User initials circle */}
         <div 
           className="user-avatar-circle"
-          onClick={handleProfileClick}
+          onClick={() => navigate('/profile')}
           title="Profile Settings"
         >
           S
