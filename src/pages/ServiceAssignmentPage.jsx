@@ -31,7 +31,7 @@ export default function ServiceAssignmentPage() {
 
   return (
     <div className="page-container bg-tinted">
-      <main className="content-wrapper" style={{ padding: '40px 20px', maxWidth: '1000px' }}>
+      <main className="content-wrapper" style={{ padding: '40px 20px', maxWidth: '1000px', margin: '0 auto' }}>
         
         {/* Centered Logo Header */}
         <div className="centered-header">
@@ -39,7 +39,7 @@ export default function ServiceAssignmentPage() {
         </div>
 
         {/* Outer container */}
-        <div className="auth-card" style={{ maxWidth: '960px', padding: '40px' }}>
+        <div className="auth-card" style={{ maxWidth: '960px', padding: '40px', margin: '0 auto' }}>
           
           {/* Header Status Green Circle */}
           <div style={{
@@ -64,7 +64,7 @@ export default function ServiceAssignmentPage() {
           </p>
 
           {/* Stepper (Stage 4 Active) */}
-          <div className="status-stepper-wrapper" style={{ marginBottom: '40px' }}>
+          <div className="status-stepper-wrapper" style={{ margin: '0 auto 40px' }}>
             <div className="status-stepper-line"></div>
             <div className="status-stepper-line-progress" style={{ width: '75%' }}></div>
 
