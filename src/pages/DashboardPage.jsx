@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heart, Activity, Calendar, User, FileText, Bell, Phone, MessageSquare, AlertTriangle, ShieldCheck, Mail, Headphones, Upload, MoreHorizontal } from 'lucide-react';
+import { Check, Heart, Activity, Calendar, User, FileText, Bell, Phone, MessageSquare, AlertTriangle, ShieldCheck, Mail, Headphones, Upload, MoreHorizontal } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import drEndfarnahanImg from '../assets/dr_endfarnahan.jpg';
