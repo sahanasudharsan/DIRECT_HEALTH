@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Bell, Check, Edit2, Upload, ChevronRight, Lock, ShieldCheck, Mail, Phone, Heart, Activity, FileText } from 'lucide-react';
+import { ArrowLeft, Bell, Check, Edit2, Upload, ChevronRight, Lock, ShieldCheck, Mail, Phone, Heart, Activity, FileText, AlertTriangle } from 'lucide-react';
 import Footer from '../components/Footer';
 import Logo from '../components/Logo';
 import sarahJohnsonImg from '../assets/sarah_johnson_profile.jpg';

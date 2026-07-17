@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Check, Star, Clock, FileText, User, Headphones, Activity, AlertTriangle, AlertCircle, Calendar, Download, Search, Pill, ShieldAlert, ArrowDown } from 'lucide-react';
+import { Check, Star, Clock, FileText, User, Headphones, Activity, AlertTriangle, AlertCircle, Calendar, Download, Search, Pill, ShieldAlert, ArrowDown, Bell } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 

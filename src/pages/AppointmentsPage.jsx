@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Check, Calendar, Clock, User, AlertTriangle, Search, ChevronLeft, ChevronRight, FileText, Headphones, Bell, Plus, MessageSquare } from 'lucide-react';
+import { Check, Calendar, Clock, User, AlertTriangle, Search, ChevronLeft, ChevronRight, FileText, Headphones, Bell, Plus, MessageSquare, Activity } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import drEvelynReedImg from '../assets/dr_evelyn_reed.jpg';
