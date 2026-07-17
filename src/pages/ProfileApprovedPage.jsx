@@ -13,8 +13,9 @@ export default function ProfileApprovedPage() {
   const selectedService = location.state?.selectedService || 'Home Nurse Consultation';
 
   const handleContinue = () => {
-    alert('Thank you for completing the Direct Health provider/patient verification flow!');
-    navigate('/');
+    navigate('/service-assignment', {
+      state: { fullName, selectedService }
+    });
   };
 
   const handleDownload = () => {
