@@ -110,7 +110,7 @@ export default function ChatSupportPage() {
 
   return (
     <div className="page-container bg-tinted">
-      <main className="content-wrapper" style={{ padding: '24px 20px', maxWidth: '1000px' }}>
+      <main className="content-wrapper" style={{ padding: '24px 20px', maxWidth: '1000px', margin: '0 auto' }}>
         
         {/* Top Navbar Header with Back Button */}
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', position: 'relative' }}>

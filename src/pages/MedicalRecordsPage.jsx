@@ -22,7 +22,7 @@ export default function MedicalRecordsPage() {
       {/* Navigation Header */}
       <Header />
 
-      <main className="content-wrapper" style={{ padding: '32px 40px', maxWidth: '1200px' }}>
+      <main className="content-wrapper" style={{ padding: '32px 40px', maxWidth: '1200px', margin: '0 auto' }}>
         
         {/* Title bar */}
         <div style={{ textAlign: 'left', marginBottom: '24px' }}>

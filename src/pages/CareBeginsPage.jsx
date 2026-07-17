@@ -59,7 +59,7 @@ export default function CareBeginsPage() {
 
   return (
     <div className="page-container bg-tinted">
-      <main className="content-wrapper" style={{ padding: '40px 20px', maxWidth: '1080px' }}>
+      <main className="content-wrapper" style={{ padding: '40px 20px', maxWidth: '1080px', margin: '0 auto' }}>
         
         {/* Centered Logo Header */}
         <div className="centered-header">
@@ -67,7 +67,7 @@ export default function CareBeginsPage() {
         </div>
 
         {/* Outer Card Wrapper */}
-        <div className="auth-card" style={{ maxWidth: '1040px', padding: '40px' }}>
+        <div className="auth-card" style={{ maxWidth: '1040px', padding: '40px', margin: '0 auto' }}>
           
           {/* Centered Header check */}
           <div style={{

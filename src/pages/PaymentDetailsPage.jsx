@@ -58,7 +58,7 @@ export default function PaymentDetailsPage() {
 
   return (
     <div className="page-container bg-tinted">
-      <main className="content-wrapper" style={{ padding: '40px 20px', maxWidth: '1080px' }}>
+      <main className="content-wrapper" style={{ padding: '40px 20px', maxWidth: '1080px', margin: '0 auto' }}>
         
         {/* Centered Logo */}
         <div className="centered-header">

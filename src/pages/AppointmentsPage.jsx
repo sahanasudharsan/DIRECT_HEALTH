@@ -51,7 +51,7 @@ export default function AppointmentsPage() {
       {/* Reusable Header */}
       <Header />
 
-      <main className="content-wrapper" style={{ padding: '32px 40px', maxWidth: '1200px' }}>
+      <main className="content-wrapper" style={{ padding: '32px 40px', maxWidth: '1200px', margin: '0 auto' }}>
         
         {/* Title bar & book action button */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
