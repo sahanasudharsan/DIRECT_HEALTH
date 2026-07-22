@@ -81,54 +81,54 @@ export default function RegisterPage() {
 
   return (
     <div className="page-container bg-tinted">
-      <main className="content-wrapper" style={{ padding: '36px 20px', maxWidth: '520px', margin: '0 auto' }}>
+      <main className="content-wrapper" style={{ padding: '20px 16px 12px', maxWidth: '480px', margin: '0 auto' }}>
         {/* Centered logo above form */}
-        <div className="centered-header">
+        <div className="centered-header" style={{ marginBottom: '12px' }}>
           <Logo centered />
         </div>
 
         {/* Headings */}
-        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '14px' }}>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
             backgroundColor: '#e0f2fe',
             color: 'var(--primary-blue)',
-            padding: '6px 14px',
-            borderRadius: '20px',
-            fontSize: '13px',
+            padding: '4px 12px',
+            borderRadius: '16px',
+            fontSize: '12px',
             fontWeight: '700',
-            marginBottom: '12px'
+            marginBottom: '6px'
           }}>
-            <UserPlus size={15} />
+            <UserPlus size={14} />
             <span>Join Direct Health</span>
           </div>
-          <h2 className="auth-title" style={{ fontSize: '30px', margin: '0 0 6px 0' }}>
+          <h2 className="auth-title" style={{ fontSize: '24px', margin: '0 0 4px 0' }}>
             Create Your Account
           </h2>
-          <p className="auth-subtitle" style={{ margin: 0 }}>
+          <p className="auth-subtitle" style={{ margin: 0, fontSize: '13px' }}>
             {accountType === 'patient'
-              ? 'Access personalized home health care, track sessions & connect with providers.'
-              : 'Join our certified provider network to manage patient care seamlessly.'}
+              ? 'Access personalized home health care & connect with providers.'
+              : 'Join our certified provider network to manage patient care.'}
           </p>
         </div>
 
         {/* Card Wrapper with Accent Bar */}
-        <div className="auth-card" style={{ maxWidth: '520px', padding: '0', overflow: 'hidden', boxShadow: '0 20px 40px -15px rgba(13, 110, 253, 0.08)' }}>
+        <div className="auth-card" style={{ maxWidth: '480px', padding: '0', margin: '0 auto 12px', overflow: 'hidden', boxShadow: '0 15px 30px -10px rgba(13, 110, 253, 0.08)' }}>
           {/* Top Gradient Bar */}
-          <div style={{ height: '5px', background: 'linear-gradient(90deg, var(--primary-blue) 0%, var(--secondary-teal) 100%)' }}></div>
+          <div style={{ height: '4px', background: 'linear-gradient(90deg, var(--primary-blue) 0%, var(--secondary-teal) 100%)' }}></div>
 
-          <div style={{ padding: '32px 36px' }}>
+          <div style={{ padding: '20px 24px' }}>
             {/* Account Category Selector */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
-              gap: '8px',
+              gap: '6px',
               backgroundColor: '#f1f5f9',
-              padding: '4px',
-              borderRadius: '10px',
-              marginBottom: '24px'
+              padding: '3px',
+              borderRadius: '8px',
+              marginBottom: '14px'
             }}>
               <button
                 type="button"
@@ -137,20 +137,20 @@ export default function RegisterPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
-                  padding: '10px',
-                  borderRadius: '8px',
+                  gap: '6px',
+                  padding: '7px 10px',
+                  borderRadius: '6px',
                   border: 'none',
-                  fontSize: '13.5px',
+                  fontSize: '12.5px',
                   fontWeight: '700',
                   cursor: 'pointer',
                   backgroundColor: accountType === 'patient' ? '#ffffff' : 'transparent',
                   color: accountType === 'patient' ? 'var(--primary-blue)' : 'var(--text-medium)',
-                  boxShadow: accountType === 'patient' ? '0 2px 6px rgba(0,0,0,0.06)' : 'none',
+                  boxShadow: accountType === 'patient' ? '0 1px 4px rgba(0,0,0,0.06)' : 'none',
                   transition: 'all 0.2s ease'
                 }}
               >
-                <User size={16} />
+                <User size={15} />
                 <span>Patient Account</span>
               </button>
 
@@ -161,37 +161,38 @@ export default function RegisterPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
-                  padding: '10px',
-                  borderRadius: '8px',
+                  gap: '6px',
+                  padding: '7px 10px',
+                  borderRadius: '6px',
                   border: 'none',
-                  fontSize: '13.5px',
+                  fontSize: '12.5px',
                   fontWeight: '700',
                   cursor: 'pointer',
                   backgroundColor: accountType === 'provider' ? '#ffffff' : 'transparent',
                   color: accountType === 'provider' ? 'var(--primary-blue)' : 'var(--text-medium)',
-                  boxShadow: accountType === 'provider' ? '0 2px 6px rgba(0,0,0,0.06)' : 'none',
+                  boxShadow: accountType === 'provider' ? '0 1px 4px rgba(0,0,0,0.06)' : 'none',
                   transition: 'all 0.2s ease'
                 }}
               >
-                <Stethoscope size={16} />
+                <Stethoscope size={15} />
                 <span>Healthcare Provider</span>
               </button>
             </div>
 
             {/* Form */}
-            <form className="auth-form" onSubmit={handleSubmit}>
+            <form className="auth-form" onSubmit={handleSubmit} style={{ gap: '12px' }}>
               {/* Full Name */}
-              <div className="form-group">
-                <label className="form-label" htmlFor="fullName">Full Name</label>
+              <div className="form-group" style={{ gap: '4px' }}>
+                <label className="form-label" htmlFor="fullName" style={{ fontSize: '13px' }}>Full Name</label>
                 <div className="input-container">
-                  <User className="input-icon-left" size={18} />
+                  <User className="input-icon-left" size={16} />
                   <input
                     id="fullName"
                     name="fullName"
                     type="text"
                     placeholder={accountType === 'patient' ? 'Sarah Olivia Johnson' : 'Dr. Jane Smith'}
                     className="form-input has-icon-left"
+                    style={{ padding: '9px 12px 9px 38px', fontSize: '14px' }}
                     value={formData.fullName}
                     onChange={handleInputChange}
                     required
@@ -200,16 +201,17 @@ export default function RegisterPage() {
               </div>
 
               {/* Email Address */}
-              <div className="form-group">
-                <label className="form-label" htmlFor="email">Email Address</label>
+              <div className="form-group" style={{ gap: '4px' }}>
+                <label className="form-label" htmlFor="email" style={{ fontSize: '13px' }}>Email Address</label>
                 <div className="input-container">
-                  <Mail className="input-icon-left" size={18} />
+                  <Mail className="input-icon-left" size={16} />
                   <input
                     id="email"
                     name="email"
                     type="email"
                     placeholder={accountType === 'patient' ? 'sarah.johnson@example.com' : 'jane.smith@medical-group.com'}
                     className="form-input has-icon-left"
+                    style={{ padding: '9px 12px 9px 38px', fontSize: '14px' }}
                     value={formData.email}
                     onChange={handleInputChange}
                     required
@@ -218,16 +220,17 @@ export default function RegisterPage() {
               </div>
 
               {/* Create Password */}
-              <div className="form-group">
-                <label className="form-label" htmlFor="password">Create Password</label>
+              <div className="form-group" style={{ gap: '4px' }}>
+                <label className="form-label" htmlFor="password" style={{ fontSize: '13px' }}>Create Password</label>
                 <div className="input-container">
-                  <Lock className="input-icon-left" size={18} />
+                  <Lock className="input-icon-left" size={16} />
                   <input
                     id="password"
                     name="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="At least 8 characters"
                     className="form-input has-icon-left has-icon-right"
+                    style={{ padding: '9px 38px 9px 38px', fontSize: '14px' }}
                     value={formData.password}
                     onChange={handleInputChange}
                     required
@@ -238,18 +241,18 @@ export default function RegisterPage() {
                     onClick={() => setShowPassword(!showPassword)}
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
 
                 {/* Password Strength Bar */}
                 {formData.password.length > 0 && (
-                  <div style={{ marginTop: '6px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: '600', marginBottom: '4px' }}>
+                  <div style={{ marginTop: '4px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11.5px', fontWeight: '600', marginBottom: '3px' }}>
                       <span style={{ color: 'var(--text-medium)' }}>Password Strength:</span>
                       <span style={{ color: strength.color }}>{strength.label}</span>
                     </div>
-                    <div style={{ display: 'flex', gap: '4px', height: '4px', borderRadius: '2px', overflow: 'hidden', backgroundColor: '#f1f5f9' }}>
+                    <div style={{ display: 'flex', gap: '3px', height: '3px', borderRadius: '2px', overflow: 'hidden', backgroundColor: '#f1f5f9' }}>
                       {[1, 2, 3, 4].map((step) => (
                         <div
                           key={step}
@@ -266,16 +269,17 @@ export default function RegisterPage() {
               </div>
 
               {/* Confirm Password */}
-              <div className="form-group">
-                <label className="form-label" htmlFor="confirmPassword">Confirm Password</label>
+              <div className="form-group" style={{ gap: '4px' }}>
+                <label className="form-label" htmlFor="confirmPassword" style={{ fontSize: '13px' }}>Confirm Password</label>
                 <div className="input-container">
-                  <Lock className="input-icon-left" size={18} />
+                  <Lock className="input-icon-left" size={16} />
                   <input
                     id="confirmPassword"
                     name="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder="Re-enter your password"
                     className="form-input has-icon-left has-icon-right"
+                    style={{ padding: '9px 38px 9px 38px', fontSize: '14px' }}
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
@@ -286,54 +290,54 @@ export default function RegisterPage() {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                   >
-                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
               </div>
 
               {/* Terms Checkbox */}
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginTop: '4px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginTop: '2px' }}>
                 <input
                   id="agreeTerms"
                   name="agreeTerms"
                   type="checkbox"
                   checked={formData.agreeTerms}
                   onChange={handleInputChange}
-                  style={{ marginTop: '3px', cursor: 'pointer', accentColor: 'var(--primary-blue)' }}
+                  style={{ marginTop: '2px', cursor: 'pointer', accentColor: 'var(--primary-blue)' }}
                 />
-                <label htmlFor="agreeTerms" style={{ fontSize: '13px', color: 'var(--text-medium)', cursor: 'pointer', lineHeight: '1.4' }}>
+                <label htmlFor="agreeTerms" style={{ fontSize: '12px', color: 'var(--text-medium)', cursor: 'pointer', lineHeight: '1.3' }}>
                   I agree to Direct Health's <span style={{ color: 'var(--primary-blue)', fontWeight: '600' }}>Terms of Service</span> and <span style={{ color: 'var(--primary-blue)', fontWeight: '600' }}>HIPAA Privacy Policy</span>.
                 </label>
               </div>
 
               {/* Error/Success Feedbacks */}
               {errorMessage && (
-                <div style={{ backgroundColor: '#fef2f2', color: '#dc2626', padding: '10px 14px', borderRadius: '8px', fontSize: '13px', textAlign: 'center', fontWeight: '600', border: '1px solid #fecaca' }}>
+                <div style={{ backgroundColor: '#fef2f2', color: '#dc2626', padding: '8px 12px', borderRadius: '6px', fontSize: '12.5px', textAlign: 'center', fontWeight: '600', border: '1px solid #fecaca' }}>
                   {errorMessage}
                 </div>
               )}
               {successMessage && (
-                <div style={{ backgroundColor: '#f0fdf4', color: '#16a34a', padding: '10px 14px', borderRadius: '8px', fontSize: '13px', textAlign: 'center', fontWeight: '600', border: '1px solid #bbf7d0' }}>
+                <div style={{ backgroundColor: '#f0fdf4', color: '#16a34a', padding: '8px 12px', borderRadius: '6px', fontSize: '12.5px', textAlign: 'center', fontWeight: '600', border: '1px solid #bbf7d0' }}>
                   {successMessage}
                 </div>
               )}
 
               {/* Submit */}
-              <button type="submit" className="submit-button" style={{ height: '46px', marginTop: '6px' }}>
+              <button type="submit" className="submit-button" style={{ height: '42px', marginTop: '4px', fontSize: '14px' }}>
                 <span>Create {accountType === 'patient' ? 'Patient Account' : 'Provider Account'}</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={16} />
               </button>
             </form>
 
             {/* Divider */}
-            <div className="divider-container" style={{ margin: '24px 0 20px' }}>
+            <div className="divider-container" style={{ margin: '14px 0 10px' }}>
               <div className="divider-line"></div>
-              <span className="divider-text">OR</span>
+              <span className="divider-text" style={{ fontSize: '11px' }}>OR</span>
               <div className="divider-line"></div>
             </div>
 
             {/* Alternative Link */}
-            <p className="auth-alternative-text" style={{ margin: 0 }}>
+            <p className="auth-alternative-text" style={{ margin: 0, fontSize: '13px' }}>
               Already have an account?{' '}
               <span
                 onClick={() => navigate('/login')}
@@ -347,17 +351,17 @@ export default function RegisterPage() {
         </div>
 
         {/* Security Badges */}
-        <div className="security-badges-container">
+        <div className="security-badges-container" style={{ gap: '16px', margin: '0 auto 8px' }}>
           <div className="security-badge">
-            <ShieldCheck size={14} strokeWidth={2.5} />
+            <ShieldCheck size={13} strokeWidth={2.5} />
             <span>HIPAA Compliant</span>
           </div>
           <div className="security-badge">
-            <Lock size={14} strokeWidth={2.5} />
+            <Lock size={13} strokeWidth={2.5} />
             <span>256-Bit Encryption</span>
           </div>
           <div className="security-badge">
-            <CheckCircle2 size={14} strokeWidth={2.5} />
+            <CheckCircle2 size={13} strokeWidth={2.5} />
             <span>SOC2 Verified</span>
           </div>
         </div>
