@@ -5,14 +5,16 @@ export default function Footer({ darkTint = false }) {
 
   return (
     <footer className={`app-footer ${darkTint ? 'app-footer-tint-login' : ''}`}>
-      <div className="footer-copy">
-        &copy; {currentYear} Direct Health. All rights reserved.
-      </div>
-      <div className="footer-links">
-        <a href="#privacy" className="footer-link" onClick={(e) => e.preventDefault()}>Privacy Policy</a>
-        <a href="#terms" className="footer-link" onClick={(e) => e.preventDefault()}>Terms of Service</a>
-        <a href="#hipaa" className="footer-link" onClick={(e) => e.preventDefault()}>HIPAA Compliance</a>
-        <a href="#support" className="footer-link" onClick={(e) => e.preventDefault()}>Contact Support</a>
+      <div className="app-footer-inner">
+        <div className="footer-copy">
+          &copy; {currentYear} Direct Health. All rights reserved.
+        </div>
+        <div className="footer-links">
+          <a href="#privacy" className="footer-link" onClick={(e) => e.preventDefault()}>Privacy Policy</a>
+          <a href="#terms" className="footer-link" onClick={(e) => e.preventDefault()}>Terms of Service</a>
+          <a href="#hipaa" className="footer-link" onClick={(e) => e.preventDefault()}>HIPAA Compliance</a>
+          <a href="#support" className="footer-link" onClick={(e) => e.preventDefault()}>Contact Support</a>
+        </div>
       </div>
     </footer>
   );
