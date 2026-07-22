@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, ShieldCheck, Lock, User, Mail, UserPlus, Sparkles, CheckCircle2, Stethoscope, ArrowRight } from 'lucide-react';
+import { Eye, EyeOff, ShieldCheck, Lock, User, Mail, UserPlus, CheckCircle2, Stethoscope, ArrowRight, Building2, Image as ImageIcon } from 'lucide-react';
 import Logo from '../components/Logo';
 import Footer from '../components/Footer';
+import registrationHero from '../assets/registration_hero.jpg';
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -79,47 +80,117 @@ export default function RegisterPage() {
     }, 1800);
   };
 
+  const handleSSOSignUp = () => {
+    setSuccessMessage('Redirecting to SSO provider registration...');
+    setTimeout(() => {
+      navigate('/dashboard');
+    }, 1200);
+  };
+
   return (
-    <div className="page-container bg-tinted">
-      <main className="content-wrapper" style={{ padding: '20px 16px 12px', maxWidth: '480px', margin: '0 auto' }}>
-        {/* Centered logo above form */}
-        <div className="centered-header" style={{ marginBottom: '12px' }}>
-          <Logo centered />
-        </div>
-
-        {/* Headings */}
-        <div style={{ textAlign: 'center', marginBottom: '14px' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            backgroundColor: '#e0f2fe',
-            color: 'var(--primary-blue)',
-            padding: '4px 12px',
-            borderRadius: '16px',
-            fontSize: '12px',
-            fontWeight: '700',
-            marginBottom: '6px'
-          }}>
-            <UserPlus size={14} />
-            <span>Join Direct Health</span>
+    <div className="page-container bg-tinted" style={{ backgroundColor: '#ffffff' }}>
+      
+      {/* Top Navbar Header */}
+      <header className="main-header" style={{ borderBottom: '1px solid #e2e8f0', backgroundColor: '#ffffff' }}>
+        <div className="main-header-inner" style={{ maxWidth: '1200px', width: '100%', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {/* Brand Logo left */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+            <Logo />
+            {/* Header Navigation Links */}
+            <nav style={{ display: 'flex', gap: '24px', fontSize: '14.5px', fontWeight: '600' }}>
+              <a href="#solutions" onClick={(e) => e.preventDefault()} style={{ color: '#475569' }}>Solutions</a>
+              <a href="#network" onClick={(e) => e.preventDefault()} style={{ color: '#475569' }}>Network</a>
+              <a href="#resources" onClick={(e) => e.preventDefault()} style={{ color: '#475569' }}>Resources</a>
+            </nav>
           </div>
-          <h2 className="auth-title" style={{ fontSize: '24px', margin: '0 0 4px 0' }}>
-            Create Your Account
-          </h2>
-          <p className="auth-subtitle" style={{ margin: 0, fontSize: '13px' }}>
-            {accountType === 'patient'
-              ? 'Access personalized home health care & connect with providers.'
-              : 'Join our certified provider network to manage patient care.'}
-          </p>
+
+          {/* Right Header Buttons */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <button 
+              type="button" 
+              onClick={() => navigate('/login')}
+              style={{ background: 'none', border: 'none', color: 'var(--primary-blue)', fontWeight: '700', fontSize: '14.5px', cursor: 'pointer' }}
+            >
+              Login
+            </button>
+            <button 
+              type="button" 
+              onClick={() => navigate('/register')}
+              style={{ backgroundColor: 'var(--primary-blue)', color: '#ffffff', border: 'none', borderRadius: '6px', padding: '8px 18px', fontWeight: '700', fontSize: '14px', cursor: 'pointer' }}
+            >
+              Get Started
+            </button>
+          </div>
         </div>
+      </header>
 
-        {/* Card Wrapper with Accent Bar */}
-        <div className="auth-card" style={{ maxWidth: '480px', padding: '0', margin: '0 auto 12px', overflow: 'hidden', boxShadow: '0 15px 30px -10px rgba(13, 110, 253, 0.08)' }}>
-          {/* Top Gradient Bar */}
-          <div style={{ height: '4px', background: 'linear-gradient(90deg, var(--primary-blue) 0%, var(--secondary-teal) 100%)' }}></div>
+      {/* Main Content 2-Column Split */}
+      <main className="content-wrapper" style={{ maxWidth: '1200px', margin: '0 auto', padding: '36px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '40px',
+          alignItems: 'center',
+          width: '100%',
+          boxSizing: 'border-box'
+        }}>
+          
+          {/* Left Column Hero Illustration Card */}
+          <div style={{
+            backgroundColor: '#eff6ff',
+            borderRadius: '16px',
+            padding: '36px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            minHeight: '520px',
+            border: '1px solid #dbeafe'
+          }}>
+            {/* Image Illustration Block */}
+            <div style={{
+              width: '100%',
+              height: '320px',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              backgroundColor: '#dbeafe',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 12px rgba(13, 110, 253, 0.06)'
+            }}>
+              {registrationHero ? (
+                <img 
+                  src={registrationHero} 
+                  alt="Clinical Care Illustration" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'var(--primary-blue)' }}>
+                  <ImageIcon size={48} strokeWidth={1.5} />
+                </div>
+              )}
+            </div>
 
-          <div style={{ padding: '20px 24px' }}>
+            {/* Left Card Heading & Text */}
+            <div style={{ marginTop: '24px', textAlign: 'left' }}>
+              <h3 style={{ fontSize: '24px', fontWeight: '800', color: 'var(--primary-blue)', margin: '0 0 8px 0', letterSpacing: '-0.3px' }}>
+                Empowering Better Care
+              </h3>
+              <p style={{ fontSize: '14.5px', color: 'var(--text-light)', margin: 0, lineHeight: '1.55' }}>
+                Access your patient network and manage treatments in one unified clinical dashboard.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column Account Creation Form */}
+          <div style={{ maxWidth: '440px', width: '100%', margin: '0 auto', textAlign: 'left' }}>
+            <h2 style={{ fontSize: '30px', fontWeight: '800', color: 'var(--text-dark)', margin: '0 0 6px 0' }}>
+              Create Account
+            </h2>
+            <p style={{ fontSize: '14px', color: 'var(--text-light)', marginBottom: '20px' }}>
+              Join Direct Health to manage patient care seamlessly.
+            </p>
+
             {/* Account Category Selector */}
             <div style={{
               display: 'grid',
@@ -128,7 +199,7 @@ export default function RegisterPage() {
               backgroundColor: '#f1f5f9',
               padding: '3px',
               borderRadius: '8px',
-              marginBottom: '14px'
+              marginBottom: '16px'
             }}>
               <button
                 type="button"
@@ -183,54 +254,53 @@ export default function RegisterPage() {
             <form className="auth-form" onSubmit={handleSubmit} style={{ gap: '12px' }}>
               {/* Full Name */}
               <div className="form-group" style={{ gap: '4px' }}>
-                <label className="form-label" htmlFor="fullName" style={{ fontSize: '13px' }}>Full Name</label>
-                <div className="input-container">
-                  <User className="input-icon-left" size={16} />
-                  <input
-                    id="fullName"
-                    name="fullName"
-                    type="text"
-                    placeholder={accountType === 'patient' ? 'Sarah Olivia Johnson' : 'Dr. Jane Smith'}
-                    className="form-input has-icon-left"
-                    style={{ padding: '9px 12px 9px 38px', fontSize: '14px' }}
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
+                <label className="form-label" htmlFor="fullName" style={{ fontWeight: '700', fontSize: '13px', color: 'var(--text-dark)' }}>
+                  Full Name
+                </label>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  placeholder={accountType === 'patient' ? 'Sarah Olivia Johnson' : 'Dr. Jane Smith'}
+                  className="form-input"
+                  style={{ padding: '10px 14px', fontSize: '14px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
 
               {/* Email Address */}
               <div className="form-group" style={{ gap: '4px' }}>
-                <label className="form-label" htmlFor="email" style={{ fontSize: '13px' }}>Email Address</label>
-                <div className="input-container">
-                  <Mail className="input-icon-left" size={16} />
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder={accountType === 'patient' ? 'sarah.johnson@example.com' : 'jane.smith@medical-group.com'}
-                    className="form-input has-icon-left"
-                    style={{ padding: '9px 12px 9px 38px', fontSize: '14px' }}
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
+                <label className="form-label" htmlFor="email" style={{ fontWeight: '700', fontSize: '13px', color: 'var(--text-dark)' }}>
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="name@medical-group.com"
+                  className="form-input"
+                  style={{ padding: '10px 14px', fontSize: '14px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
 
-              {/* Create Password */}
+              {/* Password */}
               <div className="form-group" style={{ gap: '4px' }}>
-                <label className="form-label" htmlFor="password" style={{ fontSize: '13px' }}>Create Password</label>
+                <label className="form-label" htmlFor="password" style={{ fontWeight: '700', fontSize: '13px', color: 'var(--text-dark)' }}>
+                  Password
+                </label>
                 <div className="input-container">
-                  <Lock className="input-icon-left" size={16} />
                   <input
                     id="password"
                     name="password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="At least 8 characters"
-                    className="form-input has-icon-left has-icon-right"
-                    style={{ padding: '9px 38px 9px 38px', fontSize: '14px' }}
+                    placeholder="••••••••"
+                    className="form-input has-icon-right"
+                    style={{ padding: '10px 40px 10px 14px', fontSize: '14px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
                     value={formData.password}
                     onChange={handleInputChange}
                     required
@@ -241,7 +311,7 @@ export default function RegisterPage() {
                     onClick={() => setShowPassword(!showPassword)}
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
-                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
                 </div>
 
@@ -270,16 +340,17 @@ export default function RegisterPage() {
 
               {/* Confirm Password */}
               <div className="form-group" style={{ gap: '4px' }}>
-                <label className="form-label" htmlFor="confirmPassword" style={{ fontSize: '13px' }}>Confirm Password</label>
+                <label className="form-label" htmlFor="confirmPassword" style={{ fontWeight: '700', fontSize: '13px', color: 'var(--text-dark)' }}>
+                  Confirm Password
+                </label>
                 <div className="input-container">
-                  <Lock className="input-icon-left" size={16} />
                   <input
                     id="confirmPassword"
                     name="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder="Re-enter your password"
-                    className="form-input has-icon-left has-icon-right"
-                    style={{ padding: '9px 38px 9px 38px', fontSize: '14px' }}
+                    placeholder="••••••••"
+                    className="form-input has-icon-right"
+                    style={{ padding: '10px 40px 10px 14px', fontSize: '14px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
@@ -290,7 +361,7 @@ export default function RegisterPage() {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                   >
-                    {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
                 </div>
               </div>
@@ -322,48 +393,79 @@ export default function RegisterPage() {
                 </div>
               )}
 
-              {/* Submit */}
-              <button type="submit" className="submit-button" style={{ height: '42px', marginTop: '4px', fontSize: '14px' }}>
+              {/* Primary Submit Button */}
+              <button 
+                type="submit" 
+                className="submit-button" 
+                style={{ height: '44px', marginTop: '4px', fontSize: '14.5px', fontWeight: '700', backgroundColor: 'var(--primary-blue)', borderRadius: '8px' }}
+              >
                 <span>Create {accountType === 'patient' ? 'Patient Account' : 'Provider Account'}</span>
                 <ArrowRight size={16} />
               </button>
             </form>
 
             {/* Divider */}
-            <div className="divider-container" style={{ margin: '14px 0 10px' }}>
+            <div className="divider-container" style={{ margin: '16px 0 14px' }}>
               <div className="divider-line"></div>
-              <span className="divider-text" style={{ fontSize: '11px' }}>OR</span>
+              <span className="divider-text" style={{ fontSize: '11px', color: '#94a3b8' }}>OR</span>
               <div className="divider-line"></div>
             </div>
 
-            {/* Alternative Link */}
-            <p className="auth-alternative-text" style={{ margin: 0, fontSize: '13px' }}>
+            {/* SSO Secondary Button */}
+            <button
+              type="button"
+              onClick={handleSSOSignUp}
+              style={{
+                width: '100%',
+                height: '42px',
+                border: '1px solid #cbd5e1',
+                borderRadius: '8px',
+                backgroundColor: '#ffffff',
+                color: 'var(--text-dark)',
+                fontWeight: '700',
+                fontSize: '13.5px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                marginBottom: '16px'
+              }}
+            >
+              <Building2 size={16} />
+              <span>Sign up with SSO</span>
+            </button>
+
+            {/* Log In Link */}
+            <p style={{ textAlign: 'center', fontSize: '13.5px', color: 'var(--text-light)', margin: '0 0 16px 0' }}>
               Already have an account?{' '}
               <span
                 onClick={() => navigate('/login')}
-                style={{ color: 'var(--primary-blue)', fontWeight: '700', cursor: 'pointer', textDecoration: 'underline' }}
+                style={{ color: 'var(--primary-blue)', fontWeight: '700', cursor: 'pointer' }}
                 role="link"
               >
                 Log In
               </span>
             </p>
-          </div>
-        </div>
 
-        {/* Security Badges */}
-        <div className="security-badges-container" style={{ gap: '16px', margin: '0 auto 8px' }}>
-          <div className="security-badge">
-            <ShieldCheck size={13} strokeWidth={2.5} />
-            <span>HIPAA Compliant</span>
+            {/* Security Badges */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', fontSize: '11px', fontWeight: '600', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <CheckCircle2 size={13} />
+                <span>HIPAA</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <Lock size={13} />
+                <span>ENCRYPTED</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <CheckCircle2 size={13} />
+                <span>SOC2</span>
+              </div>
+            </div>
           </div>
-          <div className="security-badge">
-            <Lock size={13} strokeWidth={2.5} />
-            <span>256-Bit Encryption</span>
-          </div>
-          <div className="security-badge">
-            <CheckCircle2 size={13} strokeWidth={2.5} />
-            <span>SOC2 Verified</span>
-          </div>
+
         </div>
       </main>
 
@@ -372,4 +474,5 @@ export default function RegisterPage() {
     </div>
   );
 }
+
 
