@@ -31,9 +31,9 @@ export default function LoginPage() {
       return;
     }
     
-    setSuccessMessage('Signed in successfully! Redirecting...');
+    setSuccessMessage('Signed in successfully! Redirecting to registration...');
     setTimeout(() => {
-      navigate('/dashboard');
+      navigate('/patient-registration');
     }, 1200);
   };
 
