@@ -12,9 +12,10 @@ export default function Logo({ centered = false }) {
       style={{ justifyContent: centered ? 'center' : 'flex-start' }}
     >
       <div className="logo-icon-wrapper">
-        <BriefcaseMedical size={20} strokeWidth={2.5} />
+        <BriefcaseMedical size={18} strokeWidth={2.5} className="logo-icon" />
       </div>
-      <span className="logo-text">Direct Health</span>
+      <span className="logo-text">DIRECT HEALTH</span>
     </div>
   );
 }
+

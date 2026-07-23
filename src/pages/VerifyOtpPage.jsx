@@ -1,38 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ShieldCheck } from 'lucide-react';
 import Logo from '../components/Logo';
 import Footer from '../components/Footer';
-
-const ShieldLockIcon = () => (
-  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-    <div style={{
-      backgroundColor: '#e6f0fa',
-      color: 'var(--primary-blue)',
-      width: '64px',
-      height: '64px',
-      borderRadius: '50%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }}>
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <rect x="9.5" y="11.5" width="5" height="4" rx="1" />
-        <path d="M10.5 11.5V10a1.5 1.5 0 0 1 3 0v1.5" />
-      </svg>
-    </div>
-  </div>
-);
 
 export default function VerifyOtpPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const emailInput = location.state?.email || '';
+  const emailInput = location.state?.email || 's***h@gmail.com';
 
-  // Masking function (e.g. j***h@medical-group.com)
+  // Masking function (e.g. s***h@gmail.com)
   const maskEmail = (emailStr) => {
-    if (!emailStr) return 's***h@gmail.com';
+    if (!emailStr || emailStr.includes('***')) return emailStr || 's***h@gmail.com';
     const [name, domain] = emailStr.split('@');
     if (name.length <= 2) return `${name}***@${domain}`;
     return `${name[0]}***${name[name.length - 1]}@${domain}`;
@@ -44,7 +23,7 @@ export default function VerifyOtpPage() {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
 
-  // Timer state (starting at 54 seconds as shown in the screenshot)
+  // Timer state (starting at 54 seconds matching screenshot)
   const [timeLeft, setTimeLeft] = useState(54);
   const [canResend, setCanResend] = useState(false);
 
@@ -73,32 +52,27 @@ export default function VerifyOtpPage() {
   };
 
   const handleInputChange = (index, value) => {
-    // Only allow numbers
     if (value && !/^\d+$/.test(value)) return;
 
     const newOtp = [...otp];
-    // Keep only the last character entered
     newOtp[index] = value.slice(-1);
     setOtp(newOtp);
     setErrorMessage('');
 
-    // Auto-focus next input
+    // Auto-focus next input box
     if (value && index < 5) {
       inputRefs.current[index + 1].focus();
     }
   };
 
   const handleKeyDown = (index, e) => {
-    // Backspace handling
     if (e.key === 'Backspace') {
       if (!otp[index] && index > 0) {
-        // If current box is empty, clear the previous one and focus it
         const newOtp = [...otp];
         newOtp[index - 1] = '';
         setOtp(newOtp);
         inputRefs.current[index - 1].focus();
       } else if (otp[index]) {
-        // If current box has value, clear it
         const newOtp = [...otp];
         newOtp[index] = '';
         setOtp(newOtp);
@@ -117,9 +91,8 @@ export default function VerifyOtpPage() {
       }
       setOtp(newOtp);
       
-      // Focus the last filled input or the next empty one
       const focusIndex = Math.min(pastedData.length, 5);
-      inputRefs.current[focusIndex].focus();
+      inputRefs.current[focusIndex]?.focus();
     }
   };
 
@@ -127,51 +100,104 @@ export default function VerifyOtpPage() {
     e.preventDefault();
     const otpCode = otp.join('');
     if (otpCode.length < 6) {
-      setErrorMessage('Please enter the full 6-digit OTP code.');
+      setErrorMessage('Please enter the complete 6-digit OTP code.');
       return;
     }
 
-    // Mock verification (e.g. checking if it is '123456' or allowing any 6 digits for testing)
-    setSuccessMessage('Identity verified successfully! Redirecting...');
+    setSuccessMessage('OTP Verified successfully! Redirecting to dashboard...');
     setTimeout(() => {
-      navigate('/patient-registration');
-    }, 1500);
+      navigate('/dashboard');
+    }, 1400);
   };
 
   const handleResend = () => {
     if (!canResend) return;
-    // Reset timer
-    setTimeLeft(59);
+    setTimeLeft(54);
     setCanResend(false);
     setOtp(['', '', '', '', '', '']);
-    inputRefs.current[0].focus();
-    setSuccessMessage('A new 6-digit OTP has been sent to your email.');
+    inputRefs.current[0]?.focus();
+    setSuccessMessage('A new 6-digit OTP code has been sent to your email.');
   };
 
   return (
-    <div className="page-container bg-tinted">
-      <main className="content-wrapper">
-        {/* Centered logo */}
-        <div className="centered-header">
+    <div className="page-container" style={{ backgroundColor: '#F4F7FB', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      
+      {/* Top Header Navbar - Minimal without upper tab links */}
+      <header style={{ padding: '24px 60px', backgroundColor: 'transparent', width: '100%', boxSizing: 'border-box' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          {/* Upper tab kept clean */}
+        </div>
+      </header>
+
+      {/* Main Centered Content Wrapper */}
+      <main style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 24px 60px' }}>
+        
+        {/* Centered Brand Logo */}
+        <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center' }}>
           <Logo centered />
         </div>
 
-        {/* Card */}
-        <div className="auth-card" style={{ padding: '36px 32px' }}>
-          {/* Shield Icon */}
-          <ShieldLockIcon />
+        {/* Main White Card Container (Matching reference image pixel-for-pixel) */}
+        <div style={{
+          maxWidth: '460px',
+          width: '100%',
+          backgroundColor: '#FFFFFF',
+          borderRadius: '20px',
+          border: '1px solid #E2E8F0',
+          boxShadow: '0 12px 32px rgba(0, 0, 0, 0.04)',
+          padding: '40px 36px',
+          boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}>
+          
+          {/* Circular Shield Badge */}
+          <div style={{
+            width: '60px',
+            height: '60px',
+            borderRadius: '50%',
+            backgroundColor: '#E6F0FA',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: '20px',
+            boxShadow: '0 4px 12px rgba(0, 98, 230, 0.1)'
+          }}>
+            <ShieldCheck size={28} color="#0062E6" strokeWidth={2.2} />
+          </div>
 
-          {/* Titles */}
-          <h2 className="auth-title" style={{ fontSize: '24px', marginBottom: '12px' }}>
+          {/* Title */}
+          <h1 style={{
+            fontSize: '26px',
+            fontWeight: '800',
+            color: '#1E293B',
+            margin: '0 0 10px 0',
+            textAlign: 'center',
+            letterSpacing: '-0.4px',
+            fontFamily: "'Inter', sans-serif"
+          }}>
             Enter OTP
-          </h2>
-          <p className="auth-subtitle" style={{ fontSize: '14px', marginBottom: '30px', lineHeight: '1.5' }}>
+          </h1>
+
+          {/* Subtitle with Masked Email */}
+          <p style={{
+            fontSize: '14.5px',
+            color: '#475569',
+            textAlign: 'center',
+            margin: '0 0 28px 0',
+            lineHeight: '1.55',
+            fontFamily: "'Inter', sans-serif",
+            maxWidth: '360px'
+          }}>
             We've sent a 6-digit code to your email (<strong>{maskedEmail}</strong>). Please enter it below to verify your identity.
           </p>
 
-          <form className="auth-form" onSubmit={handleVerify}>
-            {/* 6 Digit Input Blocks */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginBottom: '10px' }}>
+          {/* OTP Form */}
+          <form onSubmit={handleVerify} style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            
+            {/* 6 Digit Square Boxes */}
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '24px', justifyContent: 'center' }}>
               {otp.map((digit, index) => (
                 <input
                   key={index}
@@ -179,22 +205,35 @@ export default function VerifyOtpPage() {
                   type="text"
                   inputMode="numeric"
                   pattern="[0-9]*"
-                  className="form-input"
-                  style={{
-                    width: '46px',
-                    height: '46px',
-                    textAlign: 'center',
-                    fontSize: '18px',
-                    fontWeight: '700',
-                    padding: '0',
-                    border: '1px solid #d1d5db',
-                    borderRadius: '8px',
-                    backgroundColor: '#f9fafb'
-                  }}
+                  maxLength={1}
                   value={digit}
                   onChange={(e) => handleInputChange(index, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
                   onPaste={handlePaste}
+                  style={{
+                    width: '48px',
+                    height: '52px',
+                    textAlign: 'center',
+                    fontSize: '20px',
+                    fontWeight: '700',
+                    color: '#1E293B',
+                    fontFamily: "'Inter', sans-serif",
+                    borderRadius: '10px',
+                    border: '1px solid #CBD5E1',
+                    backgroundColor: '#F8FAFC',
+                    outline: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#0062E6';
+                    e.target.style.backgroundColor = '#FFFFFF';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(0, 98, 230, 0.12)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#CBD5E1';
+                    e.target.style.backgroundColor = '#F8FAFC';
+                    e.target.style.boxShadow = 'none';
+                  }}
                   required
                 />
               ))}
@@ -202,44 +241,61 @@ export default function VerifyOtpPage() {
 
             {/* Error/Success Feedbacks */}
             {errorMessage && (
-              <div style={{ color: '#dc2626', fontSize: '13px', textAlign: 'center', fontWeight: '500', marginTop: '6px' }}>
+              <div style={{ backgroundColor: '#FEF2F2', color: '#DC2626', padding: '10px 14px', borderRadius: '8px', fontSize: '13px', textAlign: 'center', fontWeight: '600', border: '1px solid #FECACA', width: '100%', marginBottom: '16px', boxSizing: 'border-box' }}>
                 {errorMessage}
               </div>
             )}
             {successMessage && (
-              <div style={{ color: '#16a34a', fontSize: '13px', textAlign: 'center', fontWeight: '500', marginTop: '6px' }}>
+              <div style={{ backgroundColor: '#F0FDF4', color: '#16A34A', padding: '10px 14px', borderRadius: '8px', fontSize: '13px', textAlign: 'center', fontWeight: '600', border: '1px solid #BBF7D0', width: '100%', marginBottom: '16px', boxSizing: 'border-box' }}>
                 {successMessage}
               </div>
             )}
 
-            {/* Verify Button */}
-            <button type="submit" className="submit-button" style={{ marginTop: '16px' }}>
+            {/* Verify & Proceed Button */}
+            <button
+              type="submit"
+              style={{
+                width: '100%',
+                height: '46px',
+                backgroundColor: '#0062E6',
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '15px',
+                fontWeight: '600',
+                fontFamily: "'Inter', sans-serif",
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 4px 14px rgba(0, 98, 230, 0.25)'
+              }}
+              onMouseOver={(e) => e.target.style.backgroundColor = '#004EC2'}
+              onMouseOut={(e) => e.target.style.backgroundColor = '#0062E6'}
+            >
               Verify & Proceed
             </button>
+
           </form>
 
-          {/* Resend Code Info */}
-          <div style={{ textAlign: 'center', marginTop: '18px', fontSize: '14px', fontWeight: '500', color: 'var(--text-medium)' }}>
+          {/* Resend Countdown Timer */}
+          <div style={{ textAlign: 'center', marginTop: '20px', fontSize: '14px', color: '#475569', fontFamily: "'Inter', sans-serif" }}>
             {timeLeft > 0 ? (
-              <span>Resend code in <strong style={{ color: 'var(--text-dark)' }}>{formatTime(timeLeft)}</strong></span>
+              <span>Resend code in <strong style={{ color: '#1E293B', fontWeight: '700' }}>{formatTime(timeLeft)}</strong></span>
             ) : (
-              <span 
-                onClick={handleResend} 
-                style={{ color: 'var(--primary-blue)', cursor: 'pointer', fontWeight: '600', textDecoration: 'underline' }}
+              <span
+                onClick={handleResend}
+                style={{ color: '#0062E6', cursor: 'pointer', fontWeight: '600', textDecoration: 'underline' }}
               >
                 Resend OTP
               </span>
             )}
           </div>
 
-          {/* Divider */}
-          <div className="divider-container" style={{ margin: '20px 0 16px' }}>
-            <div className="divider-line"></div>
-          </div>
+          {/* Divider Line */}
+          <div style={{ width: '100%', height: '1px', backgroundColor: '#E2E8F0', margin: '24px 0 20px' }}></div>
 
           {/* Back to Login Link */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <span 
+            <span
               onClick={() => navigate('/login')}
               style={{
                 display: 'inline-flex',
@@ -247,16 +303,19 @@ export default function VerifyOtpPage() {
                 gap: '6px',
                 fontSize: '14px',
                 fontWeight: '600',
-                color: 'var(--text-medium)',
-                cursor: 'pointer'
+                color: '#475569',
+                cursor: 'pointer',
+                fontFamily: "'Inter', sans-serif"
               }}
               role="link"
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={16} strokeWidth={2.2} />
               <span>Back to Login</span>
             </span>
           </div>
+
         </div>
+
       </main>
 
       {/* Footer */}

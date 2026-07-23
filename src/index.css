@@ -6,26 +6,26 @@
 }
 
 :root {
-  --primary-blue: #0D6EFD;
-  --primary-blue-hover: #0057D8;
-  --primary-blue-light: rgba(13, 110, 253, 0.08);
+  --primary-blue: #0062E6;
+  --primary-blue-hover: #004EC2;
+  --primary-blue-light: rgba(0, 98, 230, 0.08);
   --secondary-teal: #14B8A6;
-  --text-dark: #0F172A; /* Primary H1 */
-  --text-medium: #1E293B; /* secondary H2 */
-  --text-light: #475569; /* Body */
+  --text-dark: #1E293B; /* Primary H1 */
+  --text-medium: #475569; /* Subtitle / Body */
+  --text-light: #64748B; /* Secondary text */
   --border-color: #cbd5e1;
-  --border-focus: #0D6EFD;
-  --bg-light: #f8fafc;
+  --border-focus: #0062E6;
+  --bg-light: #F4F7FB;
   --bg-white: #ffffff;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
   --card-border: 1px solid #e2e8f0;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-white);
-  color: var(--text-light); /* Body color */
+  background-color: var(--bg-light);
+  color: var(--text-medium);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -52,6 +52,10 @@ a:hover {
   width: 100%;
 }
 
+.page-container.welcome-page-bg {
+  background-color: #F4F7FB;
+}
+
 .page-container.bg-tinted {
   background-color: var(--bg-light);
 }
@@ -69,41 +73,57 @@ a:hover {
   box-sizing: border-box;
 }
 
+.welcome-content-wrapper {
+  justify-content: center;
+  padding: 40px 20px;
+}
+
 /* Logo Header Component */
 .header-logo-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
   user-select: none;
 }
 
 .logo-icon-wrapper {
-  background-color: #e6f0fa;
-  color: var(--primary-blue);
-  padding: 6px;
-  border-radius: 6px;
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 98, 230, 0.2);
+}
+
+.logo-icon {
+  color: #ffffff;
 }
 
 .logo-text {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 800;
   letter-spacing: 0.5px;
-  color: var(--text-dark);
+  color: #1E293B;
   text-transform: uppercase;
+  font-family: var(--font-sans);
 }
 
 /* Page-Specific Headers */
 .app-header {
-  padding: 20px 40px;
-  background-color: var(--bg-white);
-  border-bottom: 1px solid #f1f5f9;
+  padding: 24px 60px;
+  background-color: transparent;
   display: flex;
   align-items: center;
   width: 100%;
+}
+
+.welcome-header {
+  background-color: #F4F7FB;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
 }
 
 .centered-header {
@@ -115,72 +135,80 @@ a:hover {
 
 /* Welcome Page Hero Layout */
 .welcome-hero {
-  max-width: 720px;
+  max-width: 680px;
   text-align: center;
   margin: auto;
-  padding: 40px 20px;
+  padding: 60px 20px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .hero-title {
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 800;
-  letter-spacing: -1px;
+  letter-spacing: -1.2px;
   line-height: 1.15;
-  color: var(--text-dark);
+  color: #1E293B;
   margin-bottom: 20px;
 }
 
 .hero-title span.blue-text {
   color: var(--primary-blue);
+  font-weight: 800;
 }
 
 .hero-subtitle {
-  font-size: 16px;
-  color: var(--text-medium);
+  font-size: 16.5px;
+  color: #64748B;
   max-width: 600px;
   line-height: 1.6;
-  margin-bottom: 35px;
+  margin-bottom: 36px;
+  font-weight: 400;
 }
 
 .cta-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   background-color: var(--primary-blue);
-  color: var(--bg-white);
+  color: #ffffff;
   font-weight: 600;
   font-size: 16px;
   padding: 14px 28px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 6px -1px rgba(0, 90, 204, 0.15), 0 2px 4px -1px rgba(0, 90, 204, 0.1);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 98, 230, 0.25);
 }
 
 .cta-button:hover {
   background-color: var(--primary-blue-hover);
   transform: translateY(-1px);
-  box-shadow: 0 10px 15px -3px rgba(0, 90, 204, 0.2), 0 4px 6px -2px rgba(0, 90, 204, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 98, 230, 0.35);
 }
 
 .cta-button:active {
   transform: translateY(1px);
 }
 
+/* Hero Divider */
+.hero-divider {
+  width: 320px;
+  height: 1px;
+  background-color: #E2E8F0;
+  margin: 48px auto 28px;
+}
+
 /* Social Proof Styles */
 .social-proof {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 8px;
-  margin-top: 50px;
-  border-top: 1px solid #f1f5f9;
-  padding-top: 20px;
+  justify-content: center;
+  gap: 14px;
   width: 100%;
 }
 
@@ -190,27 +218,30 @@ a:hover {
 }
 
 .avatar {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  border: 2px solid var(--bg-white);
+  border: 2px solid #ffffff;
   object-fit: cover;
   background-color: #e5e7eb;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
 }
 
 .avatar:not(:first-child) {
-  margin-left: -8px;
+  margin-left: -10px;
 }
 
 .social-text {
-  font-size: 14px;
-  color: var(--text-medium);
+  font-size: 14.5px;
+  color: #64748B;
+  font-weight: 400;
 }
 
 .social-text strong {
-  font-weight: 600;
-  color: var(--text-dark);
+  font-weight: 700;
+  color: #1E293B;
 }
+
 
 /* Form Card Container */
 .auth-card {

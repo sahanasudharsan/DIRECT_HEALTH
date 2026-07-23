@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Building2, ShieldCheck, Lock, CheckCircle2, Image as ImageIcon } from 'lucide-react';
+import { User, Key, ArrowRight, UserPlus, HelpCircle, Eye, EyeOff } from 'lucide-react';
 import Logo from '../components/Logo';
 import Footer from '../components/Footer';
 import registrationHero from '../assets/registration_hero.jpg';
@@ -8,7 +8,7 @@ import registrationHero from '../assets/registration_hero.jpg';
 export default function LoginPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
+    usernameOrEmail: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -26,267 +26,326 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password) {
-      setErrorMessage('Please enter your email address and password.');
+    if (!formData.usernameOrEmail || !formData.password) {
+      setErrorMessage('Please enter your username/email and password.');
       return;
     }
     
-    // Mock authentication
     setSuccessMessage('Signed in successfully! Redirecting...');
-    setTimeout(() => {
-      navigate('/dashboard');
-    }, 1000);
-  };
-
-  const handleSSOLogin = () => {
-    setSuccessMessage('Redirecting to SSO provider authentication...');
     setTimeout(() => {
       navigate('/dashboard');
     }, 1200);
   };
 
   return (
-    <div className="page-container bg-tinted" style={{ backgroundColor: '#ffffff' }}>
+    <div className="page-container" style={{ backgroundColor: '#F4F7FB', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       
-      {/* Top Navbar Header */}
-      <header className="main-header" style={{ borderBottom: '1px solid #e2e8f0', backgroundColor: '#ffffff' }}>
-        <div className="main-header-inner" style={{ maxWidth: '1200px', width: '100%', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          {/* Brand Logo left */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-            <Logo />
-            {/* Header Navigation Links */}
-            <nav style={{ display: 'flex', gap: '24px', fontSize: '14.5px', fontWeight: '600' }}>
-              <a href="#solutions" onClick={(e) => e.preventDefault()} style={{ color: '#475569' }}>Solutions</a>
-              <a href="#network" onClick={(e) => e.preventDefault()} style={{ color: '#475569' }}>Network</a>
-              <a href="#resources" onClick={(e) => e.preventDefault()} style={{ color: '#475569' }}>Resources</a>
-            </nav>
-          </div>
-
-          {/* Right Header Buttons */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <button 
-              type="button" 
-              onClick={() => navigate('/login')}
-              style={{ background: 'none', border: 'none', color: 'var(--primary-blue)', fontWeight: '700', fontSize: '14.5px', cursor: 'pointer' }}
-            >
-              Login
-            </button>
-            <button 
-              type="button" 
-              onClick={() => navigate('/register')}
-              style={{ backgroundColor: 'var(--primary-blue)', color: '#ffffff', border: 'none', borderRadius: '6px', padding: '8px 18px', fontWeight: '700', fontSize: '14px', cursor: 'pointer' }}
-            >
-              Get Started
-            </button>
-          </div>
+      {/* Top Navbar Header - Clean without upper tab links */}
+      <header style={{ padding: '24px 60px', backgroundColor: 'transparent', width: '100%', boxSizing: 'border-box' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          {/* Upper tab kept clean */}
         </div>
       </header>
 
-      {/* Main Content 2-Column Split */}
-      <main className="content-wrapper" style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      {/* Main 2-Column Layout */}
+      <main style={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 24px 60px' }}>
         <div style={{
+          maxWidth: '1100px',
+          width: '100%',
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: '40px',
-          alignItems: 'center',
-          width: '100%',
-          boxSizing: 'border-box'
+          gap: '48px',
+          alignItems: 'center'
         }}>
-          
-          {/* Left Column Hero Illustration Card */}
+
+          {/* LEFT COLUMN: Hero Image Panel */}
           <div style={{
-            backgroundColor: '#eff6ff',
-            borderRadius: '16px',
+            backgroundColor: '#EBF2FC',
+            borderRadius: '24px',
             padding: '36px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            minHeight: '480px',
-            border: '1px solid #dbeafe'
+            boxShadow: '0 10px 30px rgba(0, 98, 230, 0.05)',
+            border: '1px solid #DCE7FA'
           }}>
-            {/* Image Illustration Block */}
+            {/* Main Visual Image Box */}
             <div style={{
               width: '100%',
-              height: '300px',
-              borderRadius: '12px',
+              height: '380px',
+              borderRadius: '16px',
               overflow: 'hidden',
-              backgroundColor: '#dbeafe',
+              backgroundColor: '#DCE7FA',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 4px 12px rgba(13, 110, 253, 0.06)'
+              boxShadow: '0 4px 16px rgba(0, 98, 230, 0.08)'
             }}>
-              {registrationHero ? (
-                <img 
-                  src={registrationHero} 
-                  alt="Clinical Care Illustration" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'var(--primary-blue)' }}>
-                  <ImageIcon size={48} strokeWidth={1.5} />
-                </div>
-              )}
+              <img 
+                src={registrationHero} 
+                alt="Secure Clinical Access" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
 
-            {/* Left Card Heading & Text */}
-            <div style={{ marginTop: '24px', textAlign: 'left' }}>
-              <h3 style={{ fontSize: '24px', fontWeight: '800', color: 'var(--primary-blue)', margin: '0 0 8px 0', letterSpacing: '-0.3px' }}>
-                Empowering Better Care
+            {/* Headline & Description underneath */}
+            <div style={{ marginTop: '28px' }}>
+              <h3 style={{
+                fontSize: '24px',
+                fontWeight: '800',
+                color: '#0062E6',
+                margin: '0 0 10px 0',
+                letterSpacing: '-0.3px',
+                fontFamily: "'Inter', sans-serif"
+              }}>
+                Secure Clinical Portal
               </h3>
-              <p style={{ fontSize: '14.5px', color: 'var(--text-light)', margin: 0, lineHeight: '1.55' }}>
-                Access your patient network and manage treatments in one unified clinical dashboard.
+              <p style={{
+                fontSize: '15px',
+                color: '#475569',
+                margin: 0,
+                lineHeight: '1.6',
+                fontFamily: "'Inter', sans-serif"
+              }}>
+                Sign in to access your secure patient network, manage appointments, and review medical records.
               </p>
             </div>
           </div>
 
-          {/* Right Column Sign In Form */}
-          <div style={{ maxWidth: '440px', width: '100%', margin: '0 auto', textAlign: 'left' }}>
-            <h2 style={{ fontSize: '32px', fontWeight: '800', color: 'var(--text-dark)', margin: '0 0 6px 0' }}>
-              Sign In
-            </h2>
-            <p style={{ fontSize: '14.5px', color: 'var(--text-light)', marginBottom: '28px' }}>
-              Welcome back to Direct Health.
-            </p>
+          {/* RIGHT COLUMN: Login Form Content (matching 1st image) */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '420px', margin: '0 auto' }}>
+            
+            {/* Brand Logo Header */}
+            <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center' }}>
+              <Logo centered />
+            </div>
 
-            <form className="auth-form" onSubmit={handleSubmit} style={{ gap: '16px' }}>
-              {/* Email Address */}
-              <div className="form-group" style={{ gap: '6px' }}>
-                <label className="form-label" htmlFor="email" style={{ fontWeight: '700', fontSize: '13.5px', color: 'var(--text-dark)' }}>
-                  Email Address
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="name@medical-group.com"
-                  className="form-input"
-                  style={{ padding: '11px 14px', fontSize: '14.5px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
+            {/* White Form Card Container */}
+            <div style={{
+              width: '100%',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '20px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 12px 32px rgba(0, 0, 0, 0.04)',
+              overflow: 'hidden',
+              boxSizing: 'border-box'
+            }}>
+              {/* Card Main Body */}
+              <div style={{ padding: '36px 36px 28px' }}>
+                
+                <h1 style={{
+                  fontSize: '32px',
+                  fontWeight: '800',
+                  color: '#0062E6',
+                  margin: '0 0 24px 0',
+                  textAlign: 'center',
+                  letterSpacing: '-0.5px',
+                  fontFamily: "'Inter', sans-serif",
+                  textTransform: 'uppercase'
+                }}>
+                  LOGIN
+                </h1>
+
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                  
+                  {/* Username / Email Field */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <label htmlFor="usernameOrEmail" style={{ fontSize: '13.5px', fontWeight: '700', color: '#1E293B', fontFamily: "'Inter', sans-serif" }}>
+                      Username / Email
+                    </label>
+                    <div style={{ position: 'relative', width: '100%' }}>
+                      <User size={18} color="#94A3B8" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
+                      <input
+                        id="usernameOrEmail"
+                        name="usernameOrEmail"
+                        type="text"
+                        placeholder="Username / Email"
+                        value={formData.usernameOrEmail}
+                        onChange={handleInputChange}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px 12px 42px',
+                          fontSize: '14.5px',
+                          fontFamily: "'Inter', sans-serif",
+                          borderRadius: '8px',
+                          border: '1px solid #CBD5E1',
+                          outline: 'none',
+                          boxSizing: 'border-box',
+                          backgroundColor: '#F8FAFC',
+                          transition: 'border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease'
+                        }}
+                        onFocus={(e) => {
+                          e.target.style.borderColor = '#0062E6';
+                          e.target.style.backgroundColor = '#FFFFFF';
+                          e.target.style.boxShadow = '0 0 0 3px rgba(0, 98, 230, 0.12)';
+                        }}
+                        onBlur={(e) => {
+                          e.target.style.borderColor = '#CBD5E1';
+                          e.target.style.backgroundColor = '#F8FAFC';
+                          e.target.style.boxShadow = 'none';
+                        }}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Password Field */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <label htmlFor="password" style={{ fontSize: '13.5px', fontWeight: '700', color: '#1E293B', fontFamily: "'Inter', sans-serif" }}>
+                      Password
+                    </label>
+                    <div style={{ position: 'relative', width: '100%' }}>
+                      <Key size={18} color="#94A3B8" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
+                      <input
+                        id="password"
+                        name="password"
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder="Password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        style={{
+                          width: '100%',
+                          padding: '12px 42px 12px 42px',
+                          fontSize: '14.5px',
+                          fontFamily: "'Inter', sans-serif",
+                          borderRadius: '8px',
+                          border: '1px solid #CBD5E1',
+                          outline: 'none',
+                          boxSizing: 'border-box',
+                          backgroundColor: '#F8FAFC',
+                          transition: 'border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease'
+                        }}
+                        onFocus={(e) => {
+                          e.target.style.borderColor = '#0062E6';
+                          e.target.style.backgroundColor = '#FFFFFF';
+                          e.target.style.boxShadow = '0 0 0 3px rgba(0, 98, 230, 0.12)';
+                        }}
+                        onBlur={(e) => {
+                          e.target.style.borderColor = '#CBD5E1';
+                          e.target.style.backgroundColor = '#F8FAFC';
+                          e.target.style.boxShadow = 'none';
+                        }}
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        style={{
+                          position: 'absolute',
+                          right: '14px',
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          color: '#64748B',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          padding: 0
+                        }}
+                        aria-label={showPassword ? "Hide password" : "Show password"}
+                      >
+                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
+                    </div>
+
+                    {/* Forgot Password Link right below password */}
+                    <div style={{ textAlign: 'right', marginTop: '4px' }}>
+                      <span
+                        onClick={() => navigate('/forgot-password')}
+                        style={{ fontSize: '13.5px', fontWeight: '600', color: '#0062E6', cursor: 'pointer', textDecoration: 'none' }}
+                        role="link"
+                      >
+                        Forgot Password?
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Error / Success Feedback Messages */}
+                  {errorMessage && (
+                    <div style={{ backgroundColor: '#FEF2F2', color: '#DC2626', padding: '10px 14px', borderRadius: '8px', fontSize: '13px', textAlign: 'center', fontWeight: '600', border: '1px solid #FECACA' }}>
+                      {errorMessage}
+                    </div>
+                  )}
+                  {successMessage && (
+                    <div style={{ backgroundColor: '#F0FDF4', color: '#16A34A', padding: '10px 14px', borderRadius: '8px', fontSize: '13px', textAlign: 'center', fontWeight: '600', border: '1px solid #BBF7D0' }}>
+                      {successMessage}
+                    </div>
+                  )}
+
+                  {/* LOGIN Button */}
+                  <button
+                    type="submit"
+                    style={{
+                      width: '100%',
+                      height: '48px',
+                      backgroundColor: '#0062E6',
+                      color: '#FFFFFF',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontSize: '15px',
+                      fontWeight: '700',
+                      fontFamily: "'Inter', sans-serif",
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      marginTop: '6px',
+                      transition: 'all 0.2s ease',
+                      boxShadow: '0 4px 14px rgba(0, 98, 230, 0.25)',
+                      letterSpacing: '0.5px'
+                    }}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#004EC2'}
+                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#0062E6'}
+                  >
+                    <span>LOGIN</span>
+                    <ArrowRight size={18} strokeWidth={2.5} />
+                  </button>
+
+                </form>
+
               </div>
 
-              {/* Password */}
-              <div className="form-group" style={{ gap: '6px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <label className="form-label" htmlFor="password" style={{ fontWeight: '700', fontSize: '13.5px', color: 'var(--text-dark)', margin: 0 }}>
-                    Password
-                  </label>
-                  <span 
-                    onClick={() => navigate('/forgot-password')}
-                    style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-blue)', cursor: 'pointer' }}
+              {/* Card Footer Box (Matching 1st image reference) */}
+              <div style={{
+                backgroundColor: '#F1F5F9',
+                borderTop: '1px solid #E2E8F0',
+                padding: '20px 36px',
+                textAlign: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '10px'
+              }}>
+                <span style={{ fontSize: '14px', color: '#475569', fontFamily: "'Inter', sans-serif" }}>
+                  Don't have an account?
+                </span>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '20px', fontSize: '14px', fontWeight: '600' }}>
+                  <span
+                    onClick={() => navigate('/register')}
+                    style={{ color: '#0062E6', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}
                     role="link"
                   >
-                    Forgot Password?
+                    <UserPlus size={16} />
+                    <span>Register</span>
+                  </span>
+
+                  <span
+                    onClick={() => navigate('/chat-support')}
+                    style={{ color: '#0062E6', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}
+                    role="link"
+                  >
+                    <HelpCircle size={16} />
+                    <span>Need help?</span>
                   </span>
                 </div>
-                <div className="input-container">
-                  <input
-                    id="password"
-                    name="password"
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="••••••••"
-                    className="form-input has-icon-right"
-                    style={{ padding: '11px 40px 11px 14px', fontSize: '14.5px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <button
-                    type="button"
-                    className="input-icon-right"
-                    onClick={() => setShowPassword(!showPassword)}
-                    aria-label={showPassword ? "Hide password" : "Show password"}
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
               </div>
 
-              {/* Error/Success Feedbacks */}
-              {errorMessage && (
-                <div style={{ backgroundColor: '#fef2f2', color: '#dc2626', padding: '10px 14px', borderRadius: '8px', fontSize: '13px', textAlign: 'center', fontWeight: '600', border: '1px solid #fecaca' }}>
-                  {errorMessage}
-                </div>
-              )}
-              {successMessage && (
-                <div style={{ backgroundColor: '#f0fdf4', color: '#16a34a', padding: '10px 14px', borderRadius: '8px', fontSize: '13px', textAlign: 'center', fontWeight: '600', border: '1px solid #bbf7d0' }}>
-                  {successMessage}
-                </div>
-              )}
-
-              {/* Sign In Primary Button */}
-              <button 
-                type="submit" 
-                className="submit-button"
-                style={{ height: '46px', fontSize: '15px', fontWeight: '700', backgroundColor: 'var(--primary-blue)', borderRadius: '8px', marginTop: '6px' }}
-              >
-                Sign In
-              </button>
-            </form>
-
-            {/* Divider */}
-            <div className="divider-container" style={{ margin: '24px 0 20px' }}>
-              <div className="divider-line"></div>
-              <span className="divider-text" style={{ fontSize: '12px', color: '#94a3b8' }}>OR</span>
-              <div className="divider-line"></div>
             </div>
 
-            {/* SSO Secondary Button */}
-            <button
-              type="button"
-              onClick={handleSSOLogin}
-              style={{
-                width: '100%',
-                height: '44px',
-                border: '1px solid #cbd5e1',
-                borderRadius: '8px',
-                backgroundColor: '#ffffff',
-                color: 'var(--text-dark)',
-                fontWeight: '700',
-                fontSize: '14px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                marginBottom: '24px'
-              }}
-            >
-              <Building2 size={18} />
-              <span>Sign in with SSO</span>
-            </button>
-
-            {/* Sign Up Link */}
-            <p style={{ textAlign: 'center', fontSize: '14px', color: 'var(--text-light)', margin: '0 0 24px 0' }}>
-              Don't have an account?{' '}
-              <span 
-                onClick={() => navigate('/register')}
-                style={{ color: 'var(--primary-blue)', fontWeight: '700', cursor: 'pointer' }}
-                role="link"
-              >
-                Sign up
-              </span>
-            </p>
-
-            {/* Security Badges */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', fontSize: '11px', fontWeight: '600', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <CheckCircle2 size={13} />
-                <span>HIPAA</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Lock size={13} />
-                <span>ENCRYPTED</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <CheckCircle2 size={13} />
-                <span>SOC2</span>
-              </div>
-            </div>
           </div>
 
         </div>
@@ -297,4 +356,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
